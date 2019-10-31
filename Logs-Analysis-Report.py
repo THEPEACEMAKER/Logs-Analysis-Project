@@ -15,3 +15,9 @@ def queryDB(query):
     results = c.fetchall()
     db.close()
     return results
+
+# the sql queries
+popularAritcles = """select title, num
+                     from popular_articles
+                     order by num desc
+                     limit 3"""

@@ -21,3 +21,20 @@ Use `vagrant up` to bring the virtual machine online and `vagrant ssh` to login.
 
 3. Load the database using `psql -d news -f newsdata.sql`. 
 	Running this command will connect to your installed database server and execute the SQL commands in the downloaded file, creating tables and populating them with data.
+
+4. Connect to the database using `psql -d news`.
+
+5. Create the Views given below. Then exit `psql` by writing `\q`.
+
+6. Now execute the Python file - `python logs-analysis-report.py`.
+
+#### CREATE THE FOLLOWING VIEWS:
+
+##### Views for Question 1
+```sql
+CREATE VIEW popular_articles AS
+select title, count(path) as num
+from articles, log
+where articles.slug = replace(log.path, '/article/', '')
+group by title;
+```
