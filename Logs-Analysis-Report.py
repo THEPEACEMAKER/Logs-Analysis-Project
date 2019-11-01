@@ -21,3 +21,20 @@ popularAritcles = """select title, num
                      from popular_articles
                      order by num desc
                      limit 3"""
+
+
+# dealing with the results
+def print_results(q_results, type):
+    print(" ")
+    if type == "views":
+        for i in q_results:
+                print("\t" + str(i[0]) + " - " + str(i[1]) + " views")
+        print("\n")
+    elif type == "errors":
+        for i in q_results:
+                print("\t" + str(i[0]) + " - " + str(i[1]) + " % " + "errors")
+        print("\n")
+
+# executing
+print("The most popular three articles of all time")
+print_results(queryDB(popularAritcles), "views")
