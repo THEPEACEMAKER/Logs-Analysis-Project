@@ -38,3 +38,12 @@ from articles, log
 where articles.slug = replace(log.path, '/article/', '')
 group by title;
 ```
+##### Views for Question 2
+```sql
+CREATE VIEW popular_authors AS
+select authors.name as name, sum(popular_articles.num) as num
+from articles, authors, popular_articles
+where articles.author = authors.id and
+articles.title = popular_articles.title
+group by name;
+```

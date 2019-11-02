@@ -21,6 +21,9 @@ popularAritcles = """select title, num
                      from popular_articles
                      order by num desc
                      limit 3"""
+popularAuthors = """select name, num
+                     from popular_authors
+                     order by num desc"""
 
 
 # dealing with the results
@@ -38,3 +41,5 @@ def print_results(q_results, type):
 # executing
 print("The most popular three articles of all time")
 print_results(queryDB(popularAritcles), "views")
+print("the most popular article authors of all time")
+print_results(queryDB(popularAuthors), "views")
