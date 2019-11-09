@@ -24,6 +24,10 @@ popularAritcles = """select title, num
 popularAuthors = """select name, num
                      from popular_authors
                      order by num desc"""
+errorsDay = """select day, percentage
+                from errors_percentage
+                where percentage > 1
+                order by percentage desc"""
 
 
 # dealing with the results
@@ -43,3 +47,5 @@ print("The most popular three articles of all time")
 print_results(queryDB(popularAritcles), "views")
 print("the most popular article authors of all time")
 print_results(queryDB(popularAuthors), "views")
+print("The dayes on which more than 1% of requests led to errors")
+print_results(queryDB(errorsDay), "errors")

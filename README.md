@@ -47,3 +47,17 @@ where articles.author = authors.id and
 articles.title = popular_articles.title
 group by name;
 ```
+##### Views for Question 3
+```sql
+CREATE VIEW day_requests AS
+SELECT TO_CHAR(a.time, 'monthdd, yyyy') as day, count(a.status) as requests, count(b.status) as errors
+from log as a left join log as b
+on a.id = b.id and
+b.status = '404 NOT FOUND'
+group by day;
+```
+```sql
+CREATE VIEW errors_percentage AS
+select day, round(errors * 100.0 / requests, 3) as percentage
+from day_requests;
+```
